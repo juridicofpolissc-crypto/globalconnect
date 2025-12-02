@@ -1,2 +1,0 @@
-# globalconnect
-Global Connect

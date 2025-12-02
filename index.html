@@ -1,0 +1,2195 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💕 Global Connect - Find Your Match</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .app-container {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .site-header {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+    }
+
+    .site-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 0;
+      background: linear-gradient(135deg, #ff6b9d 0%, #ffc371 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .language-selector {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .language-selector:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .header-btn {
+      background: linear-gradient(135deg, #ff6b9d 0%, #c471ed 100%);
+      border: none;
+      color: #ffffff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 107, 157, 0.5);
+    }
+
+    .header-btn.logout {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .banner-frame {
+      max-width: 1800px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 250px 1fr 250px;
+      grid-template-rows: auto 1fr auto;
+      gap: 0;
+      min-height: calc(100% - 80px);
+    }
+
+    /* Top Banner */
+    .top-banner {
+      grid-column: 1 / -1;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+    }
+
+    .top-banner-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .top-banner-item:hover {
+      transform: scale(1.02);
+      border-color: #ffc371;
+      box-shadow: 0 8px 35px rgba(255, 195, 113, 0.5);
+    }
+
+    .top-banner-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Left Banner */
+    .left-banner {
+      grid-column: 1;
+      grid-row: 2;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-right: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left-banner-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      width: 100%;
+      height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .left-banner-item:hover {
+      transform: scale(1.03);
+      border-color: #ffc371;
+      box-shadow: 0 8px 35px rgba(255, 195, 113, 0.5);
+    }
+
+    .left-banner-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Right Banner */
+    .right-banner {
+      grid-column: 3;
+      grid-row: 2;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .right-banner-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      width: 100%;
+      height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .right-banner-item:hover {
+      transform: scale(1.03);
+      border-color: #ffc371;
+      box-shadow: 0 8px 35px rgba(255, 195, 113, 0.5);
+    }
+
+    .right-banner-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Bottom Banner */
+    .bottom-banner {
+      grid-column: 1 / -1;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+    }
+
+    .bottom-banner-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .bottom-banner-item:hover {
+      transform: scale(1.02);
+      border-color: #ffc371;
+      box-shadow: 0 8px 35px rgba(255, 195, 113, 0.5);
+    }
+
+    .bottom-banner-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Center Content */
+    .center-content {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 2rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sponsor-placeholder {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Login/Register Screen */
+    .auth-screen {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: 25px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 2rem 0;
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-tab.active {
+      background: linear-gradient(135deg, #ff6b9d 0%, #c471ed 100%);
+      border-color: #ff6b9d;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ffc371;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: #ff6b9d;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, #ff6b9d 0%, #c471ed 100%);
+      border: none;
+      border-radius: 15px;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Matching Screen */
+    .matching-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .matching-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .matching-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .matching-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0;
+    }
+
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .profile-card {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .profile-card.male {
+      border-color: #4facfe;
+    }
+
+    .profile-card.female {
+      border-color: #ff6b9d;
+    }
+
+    .profile-header {
+      padding: 1.5rem;
+      text-align: center;
+      font-weight: 900;
+      font-size: 1.3rem;
+    }
+
+    .profile-header.male {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .profile-header.female {
+      background: linear-gradient(135deg, #ff6b9d 0%, #ffc371 100%);
+    }
+
+    .profile-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-photo {
+      aspect-ratio: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .instagram-badge {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+      padding: 0.3rem 0.5rem;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .profile-info {
+      padding: 1.5rem;
+    }
+
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .profile-details {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .profile-bio {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 15px;
+      min-height: 80px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* Copy Button */
+    .copy-btn {
+      background: rgba(255, 195, 113, 0.2);
+      border: 2px solid #ffc371;
+      color: #ffc371;
+      padding: 0.3rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 0.5rem;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 195, 113, 0.4);
+      transform: scale(1.05);
+    }
+
+    .copy-btn.copied {
+      background: rgba(76, 175, 80, 0.3);
+      border-color: #4caf50;
+      color: #4caf50;
+    }
+
+    /* Missions Section */
+    .missions-section {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+
+    .missions-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin: 0 0 1rem 0;
+      text-align: center;
+      color: #ffc371;
+    }
+
+    .mission-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .mission-item.completed {
+      background: rgba(76, 175, 80, 0.2);
+      border-color: #4caf50;
+    }
+
+    .mission-text {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .mission-checkbox {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    /* Advice Section */
+    .advice-section {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .advice-title {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .advice-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Rating Section */
+    .rating-section {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .rating-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin: 0 0 1rem 0;
+      color: #ffc371;
+    }
+
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .star:hover {
+      transform: scale(1.2);
+    }
+
+    .star.active {
+      color: #ffc371;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 1.2rem;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .action-btn.stop {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: #ffffff;
+    }
+
+    .action-btn.pass {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: #ffffff;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    .empty-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    .empty-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .empty-subtext {
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, #ff6b9d 0%, #c471ed 100%);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.5s ease;
+      z-index: 10000;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Loading Spinner */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Profile Modal */
+    .profile-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .profile-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-header {
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .close-modal {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .close-modal:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-photo-large {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .profiles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo-section {
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .banner-frame {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto auto;
+        min-height: auto;
+      }
+
+      .top-banner {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .left-banner {
+        grid-column: 1;
+        grid-row: 2;
+        border-right: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .left-banner-item {
+        height: 300px;
+      }
+
+      .center-content {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 1rem;
+      }
+
+      .right-banner {
+        grid-column: 1;
+        grid-row: 4;
+        border-left: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .right-banner-item {
+        height: 300px;
+      }
+
+      .bottom-banner {
+        grid-column: 1;
+        grid-row: 5;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 1rem;
+      }
+
+      .auth-screen {
+        padding: 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photos {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="app-container"><!-- Header -->
+   <header class="site-header" role="banner">
+    <div class="logo-section"><span class="logo">💕</span>
+     <h1 class="site-title" id="siteTitle">Global Connect</h1>
+    </div>
+    <div class="header-actions"><select class="language-selector" id="languageSelect" onchange="changeLanguage()"> <option value="en">🇺🇸 English</option> <option value="pt">🇧🇷 Português</option> <option value="ru">🇷🇺 Русский</option> <option value="zh">🇨🇳 中文</option> </select> <button class="header-btn" id="myProfileBtn" style="display: none;" onclick="showMyProfile()"> <span data-translate="my_profile">My Profile</span> </button> <button class="header-btn" id="editProfileBtn" style="display: none;" onclick="editMyProfile()"> <span data-translate="edit_profile">✏️ Edit Profile</span> </button> <button class="header-btn logout" id="logoutBtn" style="display: none;" onclick="logout()"> <span data-translate="logout">Logout</span> </button>
+    </div>
+   </header><!-- Main Content -->
+   <main class="main-content">
+    <div class="banner-frame"><!-- Top Banner -->
+     <div class="top-banner" id="topBanner">
+      <div class="top-banner-item">
+       <div class="sponsor-placeholder">
+        <p data-translate="no_sponsors">No sponsors yet</p>
+       </div>
+      </div>
+     </div><!-- Left Banner -->
+     <aside class="left-banner" id="leftBanner">
+      <div class="left-banner-item">
+       <div class="sponsor-placeholder">
+        <p data-translate="no_sponsors">No sponsors yet</p>
+       </div>
+      </div>
+     </aside><!-- Center Content -->
+     <div class="center-content"><!-- Auth Screen -->
+      <div id="authScreen">
+       <div class="auth-screen">
+        <h2 class="auth-title" data-translate="welcome">Welcome!</h2>
+        <p class="auth-subtitle" id="welcomeText" data-translate="find_match">Find your perfect match worldwide</p>
+        <div class="auth-tabs">
+         <div class="auth-tab active" onclick="switchAuthTab('login')" id="loginTab"><span data-translate="login">Login</span>
+         </div>
+         <div class="auth-tab" onclick="switchAuthTab('register')" id="registerTab"><span data-translate="register">Register</span>
+         </div>
+        </div><!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLogin(event)">
+         <div class="form-group"><label for="loginEmail" class="form-label" data-translate="email">Email</label> <input type="email" id="loginEmail" class="form-input" placeholder="your@email.com" required>
+         </div>
+         <div class="form-group"><label for="loginPassword" class="form-label" data-translate="password">Password</label> <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required>
+         </div><button type="submit" class="submit-btn" id="loginSubmitBtn"> <span data-translate="login_btn">🚀 LOGIN</span> </button>
+        </form><!-- Register Form -->
+        <form id="registerForm" style="display: none;" onsubmit="handleRegister(event)">
+         <div class="form-group"><label for="fullName" class="form-label" data-translate="full_name">Full Name *</label> <input type="text" id="fullName" class="form-input" placeholder="John Doe" required>
+         </div>
+         <div class="form-row">
+          <div class="form-group"><label for="email" class="form-label" data-translate="email">Email *</label> <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group"><label for="phone" class="form-label" data-translate="phone">Phone *</label> <input type="tel" id="phone" class="form-input" placeholder="+1234567890" required>
+          </div>
+         </div>
+         <div class="form-group"><label for="instagram" class="form-label" data-translate="instagram">Instagram</label> <input type="text" id="instagram" class="form-input" placeholder="@username">
+         </div>
+         <div class="form-row">
+          <div class="form-group"><label for="password" class="form-label" data-translate="password">Password *</label> <input type="password" id="password" class="form-input" placeholder="••••••••" required minlength="6">
+          </div>
+          <div class="form-group"><label for="confirmPassword" class="form-label" data-translate="confirm_password">Confirm Password *</label> <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••" required minlength="6">
+          </div>
+         </div>
+         <div class="form-row">
+          <div class="form-group"><label for="birthDate" class="form-label" data-translate="birth_date">Birth Date *</label> <input type="date" id="birthDate" class="form-input" required>
+          </div>
+          <div class="form-group"><label for="age" class="form-label" data-translate="age">Age *</label> <input type="number" id="age" class="form-input" placeholder="25" required min="18" max="99">
+          </div>
+         </div>
+         <div class="form-group"><label for="gender" class="form-label" data-translate="gender">Gender *</label> <select id="gender" class="form-select" required> <option value="" data-translate="select_gender">Select...</option> <option value="male" data-translate="male">Male</option> <option value="female" data-translate="female">Female</option> </select>
+         </div>
+         <div class="form-row">
+          <div class="form-group"><label for="state" class="form-label" data-translate="state">State *</label> <input type="text" id="state" class="form-input" placeholder="California" required>
+          </div>
+          <div class="form-group"><label for="city" class="form-label" data-translate="city">City *</label> <input type="text" id="city" class="form-input" placeholder="Los Angeles" required>
+          </div>
+         </div>
+         <div class="form-group"><label for="cpf" class="form-label" data-translate="id_number">ID Number / CPF *</label> <input type="text" id="cpf" class="form-input" placeholder="123-456-789" required>
+         </div>
+         <div class="form-group"><label for="education" class="form-label" data-translate="education">Education *</label> <input type="text" id="education" class="form-input" placeholder="Bachelor's Degree" required>
+         </div>
+         <div class="form-row">
+          <div class="form-group"><label for="work" class="form-label" data-translate="work">Work *</label> <input type="text" id="work" class="form-input" placeholder="Software Engineer" required>
+          </div>
+          <div class="form-group"><label for="income" class="form-label" data-translate="income">Income *</label> <input type="text" id="income" class="form-input" placeholder="$50,000/year" required>
+          </div>
+         </div>
+         <div class="form-group"><label for="biography" class="form-label" data-translate="biography">Biography</label> <textarea id="biography" class="form-input" rows="4" placeholder="Tell us about yourself..."></textarea>
+         </div>
+         <div class="form-group"><label class="form-label" data-translate="social_media">Social Media Profiles</label>
+          <div class="form-row"><input type="url" id="photo1" class="form-input" placeholder="Instagram Profile URL"> <input type="url" id="photo2" class="form-input" placeholder="TikTok Profile URL"> <input type="url" id="photo3" class="form-input" placeholder="YouTube Channel URL">
+          </div>
+         </div><button type="submit" class="submit-btn" id="registerSubmitBtn"> <span data-translate="register_btn">✅ CREATE ACCOUNT</span> </button>
+        </form>
+       </div>
+      </div><!-- Matching Screen -->
+      <div id="matchingScreen" style="display: none;">
+       <div class="matching-container">
+        <div class="matching-header">
+         <h2 class="matching-title" data-translate="discover_people">💕 Discover People</h2>
+         <p class="matching-subtitle" data-translate="from_your_state">From your state</p>
+        </div>
+        <div class="profiles-grid" id="profilesGrid"><!-- Male Profile -->
+         <div class="profile-card male" id="maleProfile">
+          <div class="profile-header male"><span data-translate="male_profile">👨 Male Profile</span>
+          </div>
+          <div class="empty-state">
+           <div class="empty-icon">
+            🚹
+           </div>
+           <p class="empty-text" data-translate="no_male">No male profiles</p>
+           <p class="empty-subtext" data-translate="check_back">Check back later!</p>
+          </div>
+         </div><!-- Female Profile -->
+         <div class="profile-card female" id="femaleProfile">
+          <div class="profile-header female"><span data-translate="female_profile">👩 Female Profile</span>
+          </div>
+          <div class="empty-state">
+           <div class="empty-icon">
+            🚺
+           </div>
+           <p class="empty-text" data-translate="no_female">No female profiles</p>
+           <p class="empty-subtext" data-translate="check_back">Check back later!</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Right Banner -->
+      <aside class="right-banner" id="rightBanner">
+       <div class="right-banner-item">
+        <div class="sponsor-placeholder">
+         <p data-translate="no_sponsors">No sponsors yet</p>
+        </div>
+       </div>
+      </aside><!-- Bottom Banner -->
+      <div class="bottom-banner" id="bottomBanner">
+       <div class="bottom-banner-item">
+        <div class="sponsor-placeholder">
+         <p data-translate="no_sponsors">No sponsors yet</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h3 class="modal-title" id="modalProfileName">Profile Details</h3><button class="close-modal" onclick="closeProfileModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalProfileBody"><!-- Profile details will be loaded here -->
+      </div>
+     </div>
+    </div>
+    <script>
+    // Translations
+    const translations = {
+      en: {
+        our_sponsors: "💼 Our Sponsors",
+        no_sponsors: "No sponsors yet",
+        welcome: "Welcome!",
+        find_match: "Find your perfect match worldwide",
+        login: "Login",
+        register: "Register",
+        email: "Email",
+        password: "Password",
+        login_btn: "🚀 LOGIN",
+        full_name: "Full Name *",
+        phone: "Phone *",
+        instagram: "Instagram",
+        confirm_password: "Confirm Password *",
+        birth_date: "Birth Date *",
+        age: "Age *",
+        gender: "Gender *",
+        select_gender: "Select...",
+        male: "Male",
+        female: "Female",
+        state: "State *",
+        city: "City *",
+        id_number: "ID Number / CPF *",
+        education: "Education *",
+        work: "Work *",
+        income: "Income *",
+        biography: "Biography",
+        social_media: "Social Media Profiles",
+        register_btn: "✅ CREATE ACCOUNT",
+        discover_people: "💕 Discover People",
+        from_your_state: "From your state",
+        no_male: "No male profiles",
+        no_female: "No female profiles",
+        check_back: "Check back later!",
+        my_profile: "My Profile",
+        edit_profile: "✏️ Edit Profile",
+        logout: "Logout",
+        view_profile: "👁️ VIEW PROFILE",
+        next: "➡️ NEXT",
+        missions: "🎯 Missions",
+        mission_shopping: "🛍️ Propose a date at the shopping mall",
+        mission_party: "🎉 Invite to a party",
+        mission_dinner: "🍷 Invite to a romantic dinner",
+        rate_person: "⭐ Rate this person",
+        advice_title: "💡 Tips for You",
+        male_profile: "👨 Male Profile",
+        female_profile: "👩 Female Profile",
+        copied: "✅ Copied!",
+        copy: "📋 Copy"
+      },
+      pt: {
+        our_sponsors: "💼 Nossos Patrocinadores",
+        no_sponsors: "Ainda sem patrocinadores",
+        welcome: "Bem-vindo!",
+        find_match: "Encontre seu par perfeito em todo o mundo",
+        login: "Entrar",
+        register: "Cadastrar",
+        email: "E-mail",
+        password: "Senha",
+        login_btn: "🚀 ENTRAR",
+        full_name: "Nome Completo *",
+        phone: "Telefone *",
+        instagram: "Instagram",
+        confirm_password: "Confirmar Senha *",
+        birth_date: "Data de Nascimento *",
+        age: "Idade *",
+        gender: "Gênero *",
+        select_gender: "Selecione...",
+        male: "Masculino",
+        female: "Feminino",
+        state: "Estado *",
+        city: "Cidade *",
+        id_number: "Número de Identidade / CPF *",
+        education: "Educação *",
+        work: "Trabalho *",
+        income: "Renda *",
+        biography: "Biografia",
+        social_media: "Perfis de Redes Sociais",
+        register_btn: "✅ CRIAR CONTA",
+        discover_people: "💕 Descubra Pessoas",
+        from_your_state: "Do seu estado",
+        no_male: "Sem perfis masculinos",
+        no_female: "Sem perfis femininos",
+        check_back: "Volte mais tarde!",
+        my_profile: "Meu Perfil",
+        edit_profile: "✏️ Editar Perfil",
+        logout: "Sair",
+        view_profile: "👁️ VER PERFIL",
+        next: "➡️ PRÓXIMO",
+        missions: "🎯 Missões",
+        mission_shopping: "🛍️ Propor encontro no shopping",
+        mission_party: "🎉 Convidar para uma festa",
+        mission_dinner: "🍷 Convidar para jantar romântico",
+        rate_person: "⭐ Avaliar esta pessoa",
+        advice_title: "💡 Dicas para Você",
+        male_profile: "👨 Perfil Masculino",
+        female_profile: "👩 Perfil Feminino",
+        copied: "✅ Copiado!",
+        copy: "📋 Copiar"
+      },
+      ru: {
+        our_sponsors: "💼 Наши Спонсоры",
+        no_sponsors: "Спонсоров пока нет",
+        welcome: "Добро пожаловать!",
+        find_match: "Найдите свою идеальную пару по всему миру",
+        login: "Войти",
+        register: "Регистрация",
+        email: "Электронная почта",
+        password: "Пароль",
+        login_btn: "🚀 ВОЙТИ",
+        full_name: "Полное имя *",
+        phone: "Телефон *",
+        instagram: "Instagram",
+        confirm_password: "Подтвердите пароль *",
+        birth_date: "Дата рождения *",
+        age: "Возраст *",
+        gender: "Пол *",
+        select_gender: "Выберите...",
+        male: "Мужской",
+        female: "Женский",
+        state: "Штат *",
+        city: "Город *",
+        id_number: "Номер удостоверения *",
+        education: "Образование *",
+        work: "Работа *",
+        income: "Доход *",
+        biography: "Биография",
+        social_media: "Профили в социальных сетях",
+        register_btn: "✅ СОЗДАТЬ АККАУНТ",
+        discover_people: "💕 Открывайте людей",
+        from_your_state: "Из вашего штата",
+        no_male: "Нет мужских профилей",
+        no_female: "Нет женских профилей",
+        check_back: "Проверьте позже!",
+        my_profile: "Мой профиль",
+        edit_profile: "✏️ Редактировать профиль",
+        logout: "Выйти",
+        view_profile: "👁️ ПОСМОТРЕТЬ ПРОФИЛЬ",
+        next: "➡️ СЛЕДУЮЩИЙ",
+        missions: "🎯 Миссии",
+        mission_shopping: "🛍️ Предложить встречу в торговом центре",
+        mission_party: "🎉 Пригласить на вечеринку",
+        mission_dinner: "🍷 Пригласить на романтический ужин",
+        rate_person: "⭐ Оценить этого человека",
+        advice_title: "💡 Советы для вас",
+        male_profile: "👨 Мужской профиль",
+        female_profile: "👩 Женский профиль",
+        copied: "✅ Скопировано!",
+        copy: "📋 Копировать"
+      },
+      zh: {
+        our_sponsors: "💼 我们的赞助商",
+        no_sponsors: "暂无赞助商",
+        welcome: "欢迎！",
+        find_match: "在全球范围内找到您的完美伴侣",
+        login: "登录",
+        register: "注册",
+        email: "电子邮件",
+        password: "密码",
+        login_btn: "🚀 登录",
+        full_name: "全名 *",
+        phone: "电话 *",
+        instagram: "Instagram",
+        confirm_password: "确认密码 *",
+        birth_date: "出生日期 *",
+        age: "年龄 *",
+        gender: "性别 *",
+        select_gender: "选择...",
+        male: "男",
+        female: "女",
+        state: "州 *",
+        city: "城市 *",
+        id_number: "身份证号码 *",
+        education: "教育 *",
+        work: "工作 *",
+        income: "收入 *",
+        biography: "个人简介",
+        social_media: "社交媒体资料",
+        register_btn: "✅ 创建账户",
+        discover_people: "💕 发现他人",
+        from_your_state: "来自您的州",
+        no_male: "没有男性个人资料",
+        no_female: "没有女性个人资料",
+        check_back: "稍后再查看！",
+        my_profile: "我的资料",
+        edit_profile: "✏️ 编辑资料",
+        logout: "登出",
+        view_profile: "👁️ 查看资料",
+        next: "➡️ 下一个",
+        missions: "🎯 任务",
+        mission_shopping: "🛍️ 提议在购物中心约会",
+        mission_party: "🎉 邀请参加派对",
+        mission_dinner: "🍷 邀请共进浪漫晚餐",
+        rate_person: "⭐ 评价此人",
+        advice_title: "💡 给您的建议",
+        male_profile: "👨 男性资料",
+        female_profile: "👩 女性资料",
+        copied: "✅ 已复制！",
+        copy: "📋 复制"
+      }
+    };
+
+    // Advice messages
+    const adviceMessages = {
+      en: [
+        "Try to be more charismatic! A genuine smile goes a long way! 😊",
+        "Show more interest in what the other person says. Listen actively! 👂",
+        "Be confident but not arrogant. Confidence is attractive! 💪",
+        "Share interesting stories about yourself. People love good conversations! 💬",
+        "Don't forget to compliment! Everyone loves genuine compliments! 🌟",
+        "Be yourself! Authenticity is the most attractive quality! ✨",
+        "Show your sense of humor! Laughter creates great connections! 😄",
+        "Be punctual! Respecting someone's time shows you care! ⏰"
+      ],
+      pt: [
+        "Tente ser mais carismático! Um sorriso genuíno faz toda diferença! 😊",
+        "Mostre mais interesse no que a outra pessoa diz. Escute ativamente! 👂",
+        "Seja confiante mas não arrogante. Confiança é atraente! 💪",
+        "Compartilhe histórias interessantes sobre você. As pessoas adoram boas conversas! 💬",
+        "Não esqueça de elogiar! Todo mundo adora elogios genuínos! 🌟",
+        "Seja você mesmo! Autenticidade é a qualidade mais atraente! ✨",
+        "Mostre seu senso de humor! Risadas criam ótimas conexões! 😄",
+        "Seja pontual! Respeitar o tempo de alguém mostra que você se importa! ⏰"
+      ],
+      ru: [
+        "Попробуйте быть более харизматичными! Искренняя улыбка многое значит! 😊",
+        "Проявляйте больше интереса к тому, что говорит другой человек. Слушайте активно! 👂",
+        "Будьте уверены, но не высокомерны. Уверенность привлекательна! 💪",
+        "Делитесь интересными историями о себе. Люди любят хорошие разговоры! 💬",
+        "Не забывайте делать комплименты! Все любят искренние комплименты! 🌟",
+        "Будьте собой! Аутентичность - самое привлекательное качество! ✨",
+        "Покажите свое чувство юмора! Смех создает отличные связи! 😄",
+        "Будьте пунктуальны! Уважение ко времени других показывает, что вам не все равно! ⏰"
+      ],
+      zh: [
+        "试着更有魅力！真诚的微笑大有裨益！😊",
+        "对他人说的话表现出更多兴趣。积极倾听！👂",
+        "要自信但不傲慢。自信很有吸引力！💪",
+        "分享关于自己的有趣故事。人们喜欢好的对话！💬",
+        "不要忘记赞美！每个人都喜欢真诚的赞美！🌟",
+        "做你自己！真实是最有吸引力的品质！✨",
+        "展示你的幽默感！笑声创造了很好的联系！😄",
+        "要准时！尊重他人的时间表明你在乎！⏰"
+      ]
+    };
+
+    // LocalStorage Helper Functions
+    const StorageHelper = {
+      saveUsers(users) {
+        try {
+          localStorage.setItem('globalconnect_users', JSON.stringify(users));
+        } catch (e) {
+          console.error('Failed to save to localStorage:', e);
+        }
+      },
+      
+      loadUsers() {
+        try {
+          const data = localStorage.getItem('globalconnect_users');
+          return data ? JSON.parse(data) : [];
+        } catch (e) {
+          console.error('Failed to load from localStorage:', e);
+          return [];
+        }
+      },
+      
+      clear() {
+        try {
+          localStorage.removeItem('globalconnect_users');
+        } catch (e) {
+          console.error('Failed to clear localStorage:', e);
+        }
+      }
+    };
+
+    // App State
+    let appState = {
+      currentUser: null,
+      allUsers: [],
+      currentLanguage: 'en',
+      maleProfiles: [],
+      femaleProfiles: [],
+      currentMaleIndex: 0,
+      currentFemaleIndex: 0,
+      currentViewingProfile: null,
+      isEditingProfile: false
+    };
+
+    // Config for Element SDK
+    const defaultConfig = {
+      site_title: "Global Connect",
+      welcome_text: "Find your perfect match worldwide"
+    };
+
+    // Initialize SDK
+    async function initSDK() {
+      if (window.elementSdk) {
+        await window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            const titleEl = document.getElementById('siteTitle');
+            const welcomeEl = document.getElementById('welcomeText');
+
+            if (titleEl) titleEl.textContent = config.site_title || defaultConfig.site_title;
+            if (welcomeEl) welcomeEl.textContent = config.welcome_text || defaultConfig.welcome_text;
+          },
+          mapToCapabilities: (config) => ({
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ['site_title', config.site_title || defaultConfig.site_title],
+            ['welcome_text', config.welcome_text || defaultConfig.welcome_text]
+          ])
+        });
+      }
+    }
+
+    // Copy Instagram Username
+    function copyInstagram(username) {
+      const url = `https://instagram.com/${username}`;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('✅ ' + translations[appState.currentLanguage].copied);
+        }).catch(() => {
+          fallbackCopy(url);
+        });
+      } else {
+        fallbackCopy(url);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast('✅ ' + translations[appState.currentLanguage].copied);
+      } catch (err) {
+        showToast('❌ ' + (appState.currentLanguage === 'pt' ? 'Erro ao copiar' : 
+                          appState.currentLanguage === 'ru' ? 'Ошибка копирования' :
+                          appState.currentLanguage === 'zh' ? '复制错误' :
+                          'Copy error'));
+      }
+      
+      document.body.removeChild(textarea);
+    }
+
+    // Change Language
+    function changeLanguage() {
+      const lang = document.getElementById('languageSelect').value;
+      appState.currentLanguage = lang;
+      
+      try {
+        localStorage.setItem('preferred_language', lang);
+      } catch (e) {
+        console.log('Could not save language preference');
+      }
+      
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      showToast(lang === 'en' ? '🌍 Language changed' : 
+                lang === 'pt' ? '🌍 Idioma alterado' :
+                lang === 'ru' ? '🌍 Язык изменен' : 
+                '🌍 语言已更改');
+    }
+
+    // Switch Auth Tab
+    function switchAuthTab(tab) {
+      const loginTab = document.getElementById('loginTab');
+      const registerTab = document.getElementById('registerTab');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+      } else {
+        loginTab.classList.remove('active');
+        registerTab.classList.add('active');
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+      }
+    }
+
+    // Handle Login
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const submitBtn = document.getElementById('loginSubmitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span>';
+
+      setTimeout(() => {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        const user = appState.allUsers.find(u => u.email === email && u.password === password);
+
+        if (user) {
+          appState.currentUser = user;
+          appState.isEditingProfile = false;
+          showMatchingScreen();
+          showToast('✅ ' + (appState.currentLanguage === 'pt' ? 'Login realizado!' : 
+                            appState.currentLanguage === 'ru' ? 'Вход выполнен!' :
+                            appState.currentLanguage === 'zh' ? '登录成功！' :
+                            'Login successful!'));
+        } else {
+          showToast('❌ ' + (appState.currentLanguage === 'pt' ? 'Email ou senha incorretos! Crie uma conta primeiro.' : 
+                            appState.currentLanguage === 'ru' ? 'Неверный email или пароль! Создайте аккаунт.' :
+                            appState.currentLanguage === 'zh' ? '邮箱或密码错误！先创建账户。' :
+                            'Invalid credentials! Create an account first.'));
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span data-translate="login_btn">🚀 LOGIN</span>';
+          changeLanguage();
+        }
+      }, 300);
+    }
+
+    // Handle Register
+    function handleRegister(event) {
+      event.preventDefault();
+
+      const submitBtn = document.getElementById('registerSubmitBtn');
+      const originalBtnHTML = submitBtn.innerHTML;
+      
+      if (submitBtn.disabled) {
+        return;
+      }
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span>';
+
+      setTimeout(() => {
+        try {
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+
+          if (password !== confirmPassword) {
+            showToast('❌ ' + (appState.currentLanguage === 'pt' ? 'As senhas não coincidem!' : 'Passwords do not match!'));
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+            return;
+          }
+
+          const isEditing = appState.isEditingProfile && appState.currentUser !== null;
+          const userId = isEditing ? appState.currentUser.user_id : 'user_' + Date.now();
+
+          const userData = {
+            user_id: userId,
+            full_name: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            password: password,
+            phone: document.getElementById('phone').value,
+            instagram: document.getElementById('instagram').value || '',
+            birth_date: document.getElementById('birthDate').value,
+            age: parseInt(document.getElementById('age').value),
+            gender: document.getElementById('gender').value,
+            state: document.getElementById('state').value,
+            city: document.getElementById('city').value,
+            cpf: document.getElementById('cpf').value,
+            education: document.getElementById('education').value,
+            work: document.getElementById('work').value,
+            income: document.getElementById('income').value,
+            biography: document.getElementById('biography').value || '',
+            photo_1_url: document.getElementById('photo1').value || '',
+            photo_2_url: document.getElementById('photo2').value || '',
+            photo_3_url: document.getElementById('photo3').value || '',
+            created_at: isEditing ? appState.currentUser.created_at : new Date().toISOString(),
+            last_login: new Date().toISOString(),
+            is_verified: true,
+            mission_shopping: isEditing ? (appState.currentUser.mission_shopping || false) : false,
+            mission_party: isEditing ? (appState.currentUser.mission_party || false) : false,
+            mission_dinner: isEditing ? (appState.currentUser.mission_dinner || false) : false,
+            missions_completed: isEditing ? (appState.currentUser.missions_completed || false) : false,
+            rating: isEditing ? (appState.currentUser.rating || 0) : 0,
+            advice: isEditing ? (appState.currentUser.advice || '') : ''
+          };
+
+          if (isEditing) {
+            const userIndex = appState.allUsers.findIndex(u => u.user_id === appState.currentUser.user_id);
+            if (userIndex !== -1) {
+              appState.allUsers[userIndex] = userData;
+            }
+          } else {
+            appState.allUsers.push(userData);
+          }
+
+          StorageHelper.saveUsers(appState.allUsers);
+          appState.currentUser = userData;
+          appState.isEditingProfile = false;
+          showMatchingScreen();
+          
+          showToast('✅ ' + (isEditing ? 
+            (appState.currentLanguage === 'pt' ? 'Perfil atualizado!' :
+             appState.currentLanguage === 'ru' ? 'Профиль обновлен!' :
+             appState.currentLanguage === 'zh' ? '资料已更新！' :
+             'Profile updated!') :
+            (appState.currentLanguage === 'pt' ? 'Conta criada com sucesso!' :
+             appState.currentLanguage === 'ru' ? 'Аккаунт успешно создан!' :
+             appState.currentLanguage === 'zh' ? '账户创建成功！' :
+             'Account created successfully!')));
+        } catch (error) {
+          console.error('Exception:', error);
+          showToast('❌ ' + (appState.currentLanguage === 'pt' ? 'Erro inesperado!' :
+                             appState.currentLanguage === 'ru' ? 'Неожиданная ошибка!' :
+                             appState.currentLanguage === 'zh' ? '意外错误！' :
+                             'Unexpected error!'));
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      }, 100);
+    }
+
+    // Show Matching Screen
+    function showMatchingScreen() {
+      document.getElementById('authScreen').style.display = 'none';
+      document.getElementById('matchingScreen').style.display = 'block';
+      document.getElementById('myProfileBtn').style.display = 'block';
+      document.getElementById('editProfileBtn').style.display = 'block';
+      document.getElementById('logoutBtn').style.display = 'block';
+
+      filterAndDisplayProfiles();
+    }
+
+    // Filter and Display Profiles
+    function filterAndDisplayProfiles() {
+      if (!appState.currentUser) return;
+
+      const otherUsers = appState.allUsers.filter(u => {
+        return u.user_id !== appState.currentUser.user_id;
+      });
+
+      if (appState.currentUser.gender === 'female') {
+        appState.maleProfiles = otherUsers.filter(u => u.gender === 'male');
+        appState.femaleProfiles = [];
+      } else if (appState.currentUser.gender === 'male') {
+        appState.maleProfiles = [];
+        appState.femaleProfiles = otherUsers.filter(u => u.gender === 'female');
+      }
+
+      appState.currentMaleIndex = 0;
+      appState.currentFemaleIndex = 0;
+
+      displayCurrentProfiles();
+    }
+
+    // Display Current Profiles
+    function displayCurrentProfiles() {
+      if (appState.currentUser.gender === 'female') {
+        displayProfile('male', appState.maleProfiles[appState.currentMaleIndex]);
+        document.getElementById('femaleProfile').style.display = 'none';
+      } else if (appState.currentUser.gender === 'male') {
+        displayProfile('female', appState.femaleProfiles[appState.currentFemaleIndex]);
+        document.getElementById('maleProfile').style.display = 'none';
+      }
+    }
+
+    // Display Profile
+    function displayProfile(gender, profile) {
+      const container = document.getElementById(gender + 'Profile');
+      container.style.display = 'block';
+      const headerClass = gender === 'male' ? 'male' : 'female';
+
+      if (!profile) {
+        container.innerHTML = `
+          <div class="profile-header ${headerClass}">
+            <span data-translate="${gender}_profile">${gender === 'male' ? '👨 Male Profile' : '👩 Female Profile'}</span>
+          </div>
+          <div class="empty-state">
+            <div class="empty-icon">${gender === 'male' ? '🚹' : '🚺'}</div>
+            <p class="empty-text" data-translate="no_${gender}">No ${gender} profiles</p>
+            <p class="empty-subtext" data-translate="check_back">Check back later!</p>
+          </div>
+        `;
+        changeLanguage();
+        return;
+      }
+
+      const age = profile.age || calculateAge(profile.birth_date);
+      const photos = [profile.photo_1_url, profile.photo_2_url, profile.photo_3_url].filter(p => p);
+      const instagramUsername = profile.instagram ? profile.instagram.replace('@', '') : '';
+      
+      let allPhotos = [];
+      photos.forEach(url => allPhotos.push({url: url, isInstagram: false}));
+
+      while (allPhotos.length < 3) {
+        allPhotos.push({url: '', isInstagram: false});
+      }
+
+      container.innerHTML = `
+        <div class="profile-header ${headerClass}">
+          <span data-translate="${gender}_profile">${gender === 'male' ? '👨 Male Profile' : '👩 Female Profile'}</span>
+        </div>
+        
+        <div class="profile-photos">
+          ${allPhotos.map((photo, index) => {
+            if (photo.url) {
+              return `
+                <div class="profile-photo" onclick="openPhotoModal('${photo.url}')">
+                  <img src="${photo.url}" alt="Profile photo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=photo-placeholder>🖼️</div>';">
+                  ${photo.isInstagram ? '<div class="instagram-badge">📸 IG</div>' : ''}
+                </div>
+              `;
+            } else {
+              const emojis = ['📷', '🖼️', '📸'];
+              return `<div class="profile-photo"><div class="photo-placeholder">${emojis[index] || '📷'}</div></div>`;
+            }
+          }).join('')}
+        </div>
+
+        <div class="profile-info">
+          <h3 class="profile-name">${profile.full_name}</h3>
+          <div class="profile-details">
+            <p>📍 ${profile.city}, ${profile.state}</p>
+            <p>🎂 ${age} ${appState.currentLanguage === 'pt' ? 'anos' : appState.currentLanguage === 'ru' ? 'лет' : appState.currentLanguage === 'zh' ? '岁' : 'years old'}</p>
+            ${profile.instagram ? `
+              <p style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                📸 <span style="color: #ffc371; font-weight: 700;">${profile.instagram}</span>
+                <button onclick="copyInstagram('${instagramUsername}'); event.stopPropagation();" class="copy-btn" data-translate="copy">
+                  📋 ${translations[appState.currentLanguage].copy}
+                </button>
+              </p>
+            ` : ''}
+            <p>🎓 ${profile.education}</p>
+            <p>💼 ${profile.work}</p>
+            <p>💰 ${profile.income}</p>
+          </div>
+          <div class="profile-bio">
+            ${profile.biography || (appState.currentLanguage === 'pt' ? 'Sem biografia.' : appState.currentLanguage === 'ru' ? 'Биография не предоставлена.' : appState.currentLanguage === 'zh' ? '未提供简介。' : 'No biography provided.')}
+          </div>
+
+          <div class="missions-section">
+            <h4 class="missions-title" data-translate="missions">🎯 Missions</h4>
+            <div class="mission-item ${profile.mission_shopping ? 'completed' : ''}" id="mission-shopping-${profile.user_id}">
+              <span class="mission-text" data-translate="mission_shopping">🛍️ Propose a date at the shopping mall</span>
+              <input type="checkbox" class="mission-checkbox" ${profile.mission_shopping ? 'checked' : ''} onchange="toggleMission('${profile.user_id}', 'mission_shopping')">
+            </div>
+            <div class="mission-item ${profile.mission_party ? 'completed' : ''}" id="mission-party-${profile.user_id}">
+              <span class="mission-text" data-translate="mission_party">🎉 Invite to a party</span>
+              <input type="checkbox" class="mission-checkbox" ${profile.mission_party ? 'checked' : ''} onchange="toggleMission('${profile.user_id}', 'mission_party')">
+            </div>
+            <div class="mission-item ${profile.mission_dinner ? 'completed' : ''}" id="mission-dinner-${profile.user_id}">
+              <span class="mission-text" data-translate="mission_dinner">🍷 Invite to a romantic dinner</span>
+              <input type="checkbox" class="mission-checkbox" ${profile.mission_dinner ? 'checked' : ''} onchange="toggleMission('${profile.user_id}', 'mission_dinner')">
+            </div>
+          </div>
+
+          ${profile.missions_completed && profile.rating > 0 ? `
+            <div class="advice-section">
+              <h4 class="advice-title" data-translate="advice_title">💡 Tips for You</h4>
+              <p class="advice-text">${profile.advice}</p>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="profile-actions">
+          <button class="action-btn stop" onclick="event.preventDefault(); event.stopPropagation(); viewFullProfile('${profile.user_id}')">
+            <span data-translate="view_profile">👁️ VIEW PROFILE</span>
+          </button>
+          <button class="action-btn pass" onclick="event.preventDefault(); event.stopPropagation(); nextProfile('${gender}')">
+            <span data-translate="next">➡️ NEXT</span>
+          </button>
+        </div>
+      `;
+
+      changeLanguage();
+    }
+
+    // Toggle Mission
+    function toggleMission(userId, missionKey) {
+      const user = appState.allUsers.find(u => u.user_id === userId);
+      if (!user) return;
+
+      user[missionKey] = !user[missionKey];
+
+      if (user.mission_shopping && user.mission_party && user.mission_dinner && !user.missions_completed) {
+        user.missions_completed = true;
+        showRatingModal(user);
+      }
+
+      StorageHelper.saveUsers(appState.allUsers);
+      displayCurrentProfiles();
+    }
+
+    // Show Rating Modal
+    function showRatingModal(user) {
+      appState.currentViewingProfile = user;
+      const modal = document.getElementById('profileModal');
+      const modalTitle = document.getElementById('modalProfileName');
+      const modalBody = document.getElementById('modalProfileBody');
+
+      modalTitle.textContent = translations[appState.currentLanguage].rate_person;
+
+      modalBody.innerHTML = `
+        <div class="rating-section">
+          <h4 class="rating-title" data-translate="rate_person">⭐ Rate this person</h4>
+          <div class="rating-stars" id="ratingStars">
+            <span class="star" onclick="setRating(1)">⭐</span>
+            <span class="star" onclick="setRating(2)">⭐</span>
+            <span class="star" onclick="setRating(3)">⭐</span>
+            <span class="star" onclick="setRating(4)">⭐</span>
+            <span class="star" onclick="setRating(5)">⭐</span>
+          </div>
+          <button class="submit-btn" onclick="submitRating()" style="margin-top: 1rem;">
+            ${appState.currentLanguage === 'pt' ? '✅ ENVIAR AVALIAÇÃO' : 
+              appState.currentLanguage === 'ru' ? '✅ ОТПРАВИТЬ ОЦЕНКУ' :
+              appState.currentLanguage === 'zh' ? '✅ 提交评价' :
+              '✅ SUBMIT RATING'}
+          </button>
+        </div>
+      `;
+
+      modal.classList.add('active');
+    }
+
+    // Set Rating
+    function setRating(stars) {
+      if (!appState.currentViewingProfile) return;
+      appState.currentViewingProfile.rating = stars;
+
+      const starElements = document.querySelectorAll('.star');
+      starElements.forEach((star, index) => {
+        if (index < stars) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    // Submit Rating
+    function submitRating() {
+      if (!appState.currentViewingProfile || appState.currentViewingProfile.rating === 0) {
+        showToast('❌ Please select a rating!');
+        return;
+      }
+
+      const user = appState.currentViewingProfile;
+      const adviceList = adviceMessages[appState.currentLanguage];
+      user.advice = adviceList[Math.floor(Math.random() * adviceList.length)];
+
+      StorageHelper.saveUsers(appState.allUsers);
+      closeProfileModal();
+      displayCurrentProfiles();
+      
+      showToast('✅ ' + (appState.currentLanguage === 'pt' ? 'Avaliação enviada!' :
+                        appState.currentLanguage === 'ru' ? 'Оценка отправлена!' :
+                        appState.currentLanguage === 'zh' ? '评价已提交！' :
+                        'Rating submitted!'));
+    }
+
+    // Calculate Age
+    function calculateAge(birthDate) {
+      const today = new Date();
+      const birth = new Date(birthDate);
+      let age = today.getFullYear() - birth.getFullYear();
+      const monthDiff = today.getMonth() - birth.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+        age--;
+      }
+      return age;
+    }
+
+    // Next Profile
+    function nextProfile(gender) {
+      if (gender === 'male') {
+        if (appState.maleProfiles.length === 0) return;
+        appState.currentMaleIndex = (appState.currentMaleIndex + 1) % appState.maleProfiles.length;
+        displayProfile('male', appState.maleProfiles[appState.currentMaleIndex]);
+      } else {
+        if (appState.femaleProfiles.length === 0) return;
+        appState.currentFemaleIndex = (appState.currentFemaleIndex + 1) % appState.femaleProfiles.length;
+        displayProfile('female', appState.femaleProfiles[appState.currentFemaleIndex]);
+      }
+    }
+
+    // View Full Profile
+    function viewFullProfile(userId) {
+      const user = appState.allUsers.find(u => u.user_id === userId);
+      if (!user) return;
+
+      const modal = document.getElementById('profileModal');
+      const modalBody = document.getElementById('modalProfileBody');
+      const modalTitle = document.getElementById('modalProfileName');
+
+      modalTitle.textContent = user.full_name;
+
+      const age = user.age || calculateAge(user.birth_date);
+      const photos = [user.photo_1_url, user.photo_2_url, user.photo_3_url].filter(p => p);
+      const instagramUsername = user.instagram ? user.instagram.replace('@', '') : '';
+      
+      let allPhotos = [];
+      allPhotos.push(...photos);
+
+      modalBody.innerHTML = `
+        <div style="margin-bottom: 1.5rem; border-radius: 15px; overflow: hidden; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);">
+          <a href="https://www.amazon.com.br" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF9900 0%, #FFB84D 100%); gap: 1.2rem; padding: 1.2rem 1.5rem;">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+              <rect x="10" y="10" width="80" height="80" rx="10" fill="white"/>
+              <path d="M 30 60 Q 50 70 70 60" stroke="#FF9900" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M 65 62 L 70 60 L 68 65" fill="#FF9900"/>
+            </svg>
+            <div style="display: flex; flex-direction: column; flex: 1;">
+              <span style="font-size: 1.8rem; font-weight: 900; color: white; letter-spacing: -1px;">Amazon</span>
+              <span style="font-size: 0.8rem; color: white; font-weight: 600;">📦 Milhões de Produtos • Entrega Rápida</span>
+            </div>
+            <div style="background: white; color: #FF9900; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 900; font-size: 0.9rem;">
+              VER AGORA
+            </div>
+          </a>
+        </div>
+
+        ${allPhotos.length > 0 ? allPhotos.map(url => `
+          <img src="${url}" alt="Profile photo" class="modal-photo-large" onerror="this.style.display='none';">
+        `).join('') : '<div class="photo-placeholder" style="font-size: 5rem; text-align: center; padding: 3rem;">📷</div>'}
+        
+        
+        <div class="profile-info">
+          <h3 class="profile-name">${user.full_name}</h3>
+          <div class="profile-details">
+            <p><strong>📍 ${appState.currentLanguage === 'pt' ? 'Localização' : appState.currentLanguage === 'ru' ? 'Местоположение' : appState.currentLanguage === 'zh' ? '位置' : 'Location'}:</strong> ${user.city}, ${user.state}</p>
+            <p><strong>🎂 ${appState.currentLanguage === 'pt' ? 'Idade' : appState.currentLanguage === 'ru' ? 'Возраст' : appState.currentLanguage === 'zh' ? '年龄' : 'Age'}:</strong> ${age} ${appState.currentLanguage === 'pt' ? 'anos' : appState.currentLanguage === 'ru' ? 'лет' : appState.currentLanguage === 'zh' ? '岁' : 'years old'}</p>
+            <p><strong>📧 Email:</strong> ${user.email}</p>
+            <p><strong>📱 ${appState.currentLanguage === 'pt' ? 'Telefone' : appState.currentLanguage === 'ru' ? 'Телефон' : appState.currentLanguage === 'zh' ? '电话' : 'Phone'}:</strong> ${user.phone}</p>
+            ${user.instagram ? `
+              <p style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <strong>📸 Instagram:</strong> 
+                <span style="color: #ffc371; font-weight: 700;">${user.instagram}</span>
+                <button onclick="copyInstagram('${instagramUsername}'); event.stopPropagation();" class="copy-btn">
+                  📋 ${translations[appState.currentLanguage].copy}
+                </button>
+              </p>
+            ` : ''}
+            <p><strong>🆔 ID:</strong> ${user.cpf}</p>
+            <p><strong>🎓 ${appState.currentLanguage === 'pt' ? 'Educação' : appState.currentLanguage === 'ru' ? 'Образование' : appState.currentLanguage === 'zh' ? '教育' : 'Education'}:</strong> ${user.education}</p>
+            <p><strong>💼 ${appState.currentLanguage === 'pt' ? 'Trabalho' : appState.currentLanguage === 'ru' ? 'Работа' : appState.currentLanguage === 'zh' ? '工作' : 'Work'}:</strong> ${user.work}</p>
+            <p><strong>💰 ${appState.currentLanguage === 'pt' ? 'Renda' : appState.currentLanguage === 'ru' ? 'Доход' : appState.currentLanguage === 'zh' ? '收入' : 'Income'}:</strong> ${user.income}</p>
+          </div>
+          <div class="profile-bio" style="margin-top: 1rem;">
+            <strong>${appState.currentLanguage === 'pt' ? 'Biografia' : appState.currentLanguage === 'ru' ? 'Биография' : appState.currentLanguage === 'zh' ? '简介' : 'Biography'}:</strong><br>
+            ${user.biography || (appState.currentLanguage === 'pt' ? 'Sem biografia.' : appState.currentLanguage === 'ru' ? 'Биография не предоставлена.' : appState.currentLanguage === 'zh' ? '未提供简介。' : 'No biography provided.')}
+          </div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+    }
+
+    // Open Photo Modal
+    function openPhotoModal(photoUrl) {
+      const modal = document.getElementById('profileModal');
+      const modalBody = document.getElementById('modalProfileBody');
+      const modalTitle = document.getElementById('modalProfileName');
+
+      modalTitle.textContent = appState.currentLanguage === 'pt' ? 'Foto' : appState.currentLanguage === 'ru' ? 'Фото' : appState.currentLanguage === 'zh' ? '照片' : 'Photo';
+      modalBody.innerHTML = `
+        <img src="${photoUrl}" alt="Profile photo" class="modal-photo-large" onerror="this.src=''; this.alt='Image not found';">
+      `;
+
+      modal.classList.add('active');
+    }
+
+    // Close Profile Modal
+    function closeProfileModal() {
+      document.getElementById('profileModal').classList.remove('active');
+      appState.currentViewingProfile = null;
+    }
+
+    // Show My Profile
+    function showMyProfile() {
+      if (appState.currentUser) {
+        viewFullProfile(appState.currentUser.user_id);
+      }
+    }
+
+    // Edit My Profile
+    function editMyProfile() {
+      if (!appState.currentUser) return;
+
+      appState.isEditingProfile = true;
+      switchAuthTab('register');
+      
+      document.getElementById('authScreen').style.display = 'block';
+      document.getElementById('matchingScreen').style.display = 'none';
+      document.getElementById('myProfileBtn').style.display = 'none';
+      document.getElementById('editProfileBtn').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+      
+      document.getElementById('fullName').value = appState.currentUser.full_name || '';
+      document.getElementById('email').value = appState.currentUser.email || '';
+      document.getElementById('phone').value = appState.currentUser.phone || '';
+      document.getElementById('instagram').value = appState.currentUser.instagram || '';
+      document.getElementById('password').value = appState.currentUser.password || '';
+      document.getElementById('confirmPassword').value = appState.currentUser.password || '';
+      document.getElementById('birthDate').value = appState.currentUser.birth_date || '';
+      document.getElementById('age').value = appState.currentUser.age || '';
+      document.getElementById('gender').value = appState.currentUser.gender || '';
+      document.getElementById('state').value = appState.currentUser.state || '';
+      document.getElementById('city').value = appState.currentUser.city || '';
+      document.getElementById('cpf').value = appState.currentUser.cpf || '';
+      document.getElementById('education').value = appState.currentUser.education || '';
+      document.getElementById('work').value = appState.currentUser.work || '';
+      document.getElementById('income').value = appState.currentUser.income || '';
+      document.getElementById('biography').value = appState.currentUser.biography || '';
+      document.getElementById('photo1').value = appState.currentUser.photo_1_url || '';
+      document.getElementById('photo2').value = appState.currentUser.photo_2_url || '';
+      document.getElementById('photo3').value = appState.currentUser.photo_3_url || '';
+
+      const registerBtn = document.getElementById('registerSubmitBtn');
+      registerBtn.disabled = false;
+      registerBtn.innerHTML = '<span>' + (appState.currentLanguage === 'pt' ? '✅ ATUALIZAR PERFIL' :
+                                          appState.currentLanguage === 'ru' ? '✅ ОБНОВИТЬ ПРОФИЛЬ' :
+                                          appState.currentLanguage === 'zh' ? '✅ 更新资料' :
+                                          '✅ UPDATE PROFILE') + '</span>';
+    }
+
+    // Logout
+    function logout() {
+      appState.currentUser = null;
+      appState.isEditingProfile = false;
+      document.getElementById('authScreen').style.display = 'block';
+      document.getElementById('matchingScreen').style.display = 'none';
+      document.getElementById('myProfileBtn').style.display = 'none';
+      document.getElementById('editProfileBtn').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+      
+      document.getElementById('loginForm').reset();
+      document.getElementById('registerForm').reset();
+      
+      const registerBtn = document.getElementById('registerSubmitBtn');
+      registerBtn.disabled = false;
+      registerBtn.innerHTML = '<span data-translate="register_btn">✅ CREATE ACCOUNT</span>';
+      changeLanguage();
+      
+      showToast('👋 ' + (appState.currentLanguage === 'pt' ? 'Saiu com sucesso!' :
+                         appState.currentLanguage === 'ru' ? 'Выход выполнен!' :
+                         appState.currentLanguage === 'zh' ? '登出成功！' :
+                         'Logged out successfully!'));
+    }
+
+    // Load Sponsors
+    function loadSponsors() {
+      const topBanner = document.getElementById('topBanner');
+      const leftBanner = document.getElementById('leftBanner');
+      const rightBanner = document.getElementById('rightBanner');
+      const bottomBanner = document.getElementById('bottomBanner');
+
+      if (!topBanner || !leftBanner || !rightBanner || !bottomBanner) {
+        return;
+      }
+
+      if (topBanner.querySelector('.top-banner-item a')) {
+        return;
+      }
+
+      topBanner.innerHTML = `
+        <div class="top-banner-item">
+          <a href="https://www.mercadolivre.com.br" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FFE600 0%, #FFF100 100%); gap: 1.5rem; height: 100%; width: 100%; border-radius: 15px; padding: 0 2rem;">
+            <svg width="70" height="70" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#2D3277"/>
+              <path d="M 30 45 L 45 60 L 70 35" stroke="white" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-size: 2.2rem; font-weight: 900; color: #2D3277; letter-spacing: -1px;">Mercado Livre</span>
+              <span style="font-size: 0.95rem; color: #2D3277; font-weight: 600;">🛒 Compre e Venda Online • Entrega Rápida</span>
+            </div>
+          </a>
+        </div>
+      `;
+
+      leftBanner.innerHTML = `
+        <div class="left-banner-item">
+          <a href="https://www.ifood.com.br" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #EA1D2C 0%, #FF4545 100%); padding: 2rem; gap: 1rem; height: 100%; width: 100%; border-radius: 15px;">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="white"/>
+              <path d="M 50 25 Q 35 35 35 50 T 50 75 Q 65 65 65 50 T 50 25" fill="#EA1D2C"/>
+              <circle cx="50" cy="45" r="8" fill="white"/>
+              <path d="M 40 55 Q 50 65 60 55" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </svg>
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 900; color: white; letter-spacing: -2px;">iFood</div>
+              <div style="font-size: 1.1rem; color: white; font-weight: 600; margin-top: 0.5rem;">🍕 Peça Delivery</div>
+              <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); margin-top: 0.5rem;">Restaurantes</div>
+              <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">Mercado</div>
+              <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">Farmácia</div>
+            </div>
+            <div style="background: white; color: #EA1D2C; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 900; font-size: 1rem; margin-top: 1rem;">
+              PEDIR AGORA 🛵
+            </div>
+          </a>
+        </div>
+      `;
+
+      rightBanner.innerHTML = `
+        <div class="right-banner-item">
+          <a href="https://www.magazineluiza.com.br" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #0086FF 0%, #00A8FF 100%); padding: 2rem; gap: 1rem; height: 100%; width: 100%; border-radius: 15px;">
+            <svg width="90" height="90" viewBox="0 0 100 100">
+              <rect x="20" y="30" width="60" height="50" rx="5" fill="white"/>
+              <circle cx="50" cy="50" r="15" fill="#0086FF"/>
+              <path d="M 45 50 L 48 53 L 55 46" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <rect x="35" y="20" width="30" height="8" rx="2" fill="white"/>
+            </svg>
+            <div style="text-align: center;">
+              <div style="font-size: 2.2rem; font-weight: 900; color: white; letter-spacing: -1px;">Magazine</div>
+              <div style="font-size: 2.2rem; font-weight: 900; color: white; letter-spacing: -1px; margin-top: -0.3rem;">Luiza</div>
+              <div style="font-size: 1rem; color: white; font-weight: 600; margin-top: 0.8rem;">🏪 Eletrônicos</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9); margin-top: 0.5rem;">Celulares</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9);">Televisões</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9);">Notebooks</div>
+            </div>
+            <div style="background: white; color: #0086FF; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 900; font-size: 0.95rem; margin-top: 0.8rem;">
+              VER OFERTAS 🔥
+            </div>
+          </a>
+        </div>
+      `;
+
+      bottomBanner.innerHTML = `
+        <div class="bottom-banner-item">
+          <a href="https://www.americanas.com.br" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF0030 0%, #FF3355 100%); gap: 1.5rem; height: 100%; width: 100%; border-radius: 15px; padding: 0 2rem;">
+            <svg width="70" height="70" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="white"/>
+              <path d="M 30 50 L 40 65 L 50 50 L 60 65 L 70 50" stroke="#FF0030" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="35" cy="35" r="5" fill="#FF0030"/>
+              <circle cx="50" cy="35" r="5" fill="#FF0030"/>
+              <circle cx="65" cy="35" r="5" fill="#FF0030"/>
+            </svg>
+            <div style="display: flex; flex-direction: column; flex: 1;">
+              <span style="font-size: 2.2rem; font-weight: 900; color: white; letter-spacing: -1px;">Americanas</span>
+              <span style="font-size: 0.95rem; color: white; font-weight: 600;">🎁 Milhares de Produtos • Entrega Expressa</span>
+            </div>
+            <div style="background: white; color: #FF0030; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 900; font-size: 1.1rem;">
+              COMPRAR 🛍️
+            </div>
+          </a>
+        </div>
+      `;
+    }
+
+    // Show Toast
+    function showToast(message) {
+      const existingToast = document.querySelector('.toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Load users from localStorage
+      appState.allUsers = StorageHelper.loadUsers();
+      
+      // Restore language preference
+      try {
+        const savedLanguage = localStorage.getItem('preferred_language');
+        if (savedLanguage) {
+          appState.currentLanguage = savedLanguage;
+          document.getElementById('languageSelect').value = savedLanguage;
+          changeLanguage();
+        }
+      } catch (e) {
+        console.log('Could not restore language preference');
+      }
+      
+      // Load banners
+      loadSponsors();
+      
+      // Initialize Element SDK
+      await initSDK();
+      
+      showToast('💾 ' + (appState.currentLanguage === 'pt' ? `${appState.allUsers.length} perfis carregados do localStorage!` :
+                        appState.currentLanguage === 'ru' ? `${appState.allUsers.length} профилей загружено из localStorage!` :
+                        appState.currentLanguage === 'zh' ? `从localStorage加载了${appState.allUsers.length}个资料！` :
+                        `${appState.allUsers.length} profiles loaded from localStorage!`));
+    });
+  </script>
+   </main>
+  </div>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a768811650e50ef',t:'MTc2NDYzMzQ5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
